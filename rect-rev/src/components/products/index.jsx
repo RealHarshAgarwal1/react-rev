@@ -1,16 +1,63 @@
 import ProductItem from "./components/product-item";
+import "./style.css";
+import { useEffect, useState } from "react";
 
-const dummyProductData=['Product1','Product2','Product3','Product4','Product5'];
+
+function ProductList({name,city,listofProduct}){
 
 
-function ProductList(){
+    const [flag,setflag]=useState(true);
+    const [count,setCount]=useState(0);
+    const [changeStyle,setChangeStyle]=useState(false);
+
+
+        function handleToggleText(){
+            setflag(!flag);
+        }
+
+        function handleIncCount(){
+            setCount(count+1);
+        }
+        function handleDecCount(){
+            setCount(count===0?count:count-1)
+        }
+
+
+        useEffect(()=>{
+            setflag(!flag);
+            console.log("hello");
+        },[])
+
+        useEffect(()=>{
+            if(count===10) setChangeStyle(true);
+            console.log('count changed')
+        },[count])
+
+        console.log(changeStyle);
+
+
     return (<div>
-        <h3>PRoduct List</h3>
+
+        <button onClick={handleToggleText}>Toggle</button>
+        <h3 className="title">PRoduct List</h3>
         {/* <ProductItem/> */}
+        
+        {flag? <h4>name={name}
+            city={city}
+        </h4>:<h4>Heeeeeeeeeeeeeeloooooo
+        </h4>}
+
+        <div>
+            <button style={{backgroundColor:changeStyle?'black':'white',color:changeStyle?'white':'black'}} onClick={handleIncCount}>+</button>
+            <h1>Count is {count}</h1>
+            <button onClick={handleDecCount}>-</button>
+        </div>
+
 
         <ul>
-            {
-                dummyProductData.map((item,index)=><li key={index}>{item}{console.log(index)}</li> )
+            {listofProduct.map((item,index)=>(
+                <ProductItem singleProductItem={item} key={index}/>
+            ))
             }
         </ul>
     </div>);

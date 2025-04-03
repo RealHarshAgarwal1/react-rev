@@ -7,12 +7,12 @@ function ButtonComponent(){
 
 
 
-function ProductItem(){
-    return (<div>
+function ProductItem({singleProductItem, key}){
+    return (<div key={key}>
 
-        <p>product 1</p>
+        <p>{singleProductItem}</p>
         <ButtonComponent/>
     </div>);
 }
-
+ 
 export default ProductItem;
