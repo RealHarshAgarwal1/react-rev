@@ -8,6 +8,8 @@ function FormComponent(){
     const [nameValue,setNameValue]= useState(' ');
     const [emailValue,setEmailValue]=useState('');
 
+    ////
+
     function handleNameChange(event) {
         const {value}=event.target;
         setNameValue(value);
