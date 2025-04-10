@@ -8,13 +8,17 @@ function FormComponent(){
     const [nameValue,setNameValue]= useState(' ');
     const [emailValue,setEmailValue]=useState('');
 
-    ////
 
-    function handleNameChange(event) {
-        const {value}=event.target;
-        setNameValue(value);
+    const [formData,setFormData]=useState({
+        name:'',
+        email:''
+    })
+
+    // function handleNameChange(event) {
+    //     const {value}=event.target;
+    //     setNameValue(value);
         
-    }
+    // }
 
     function handleSubmit(event){
         event.preventDefault();
@@ -23,27 +27,34 @@ function FormComponent(){
         
     }
 
-    function handleEmailChange(event) {
-        const {value}=event.target;
-        setEmailValue(value);
-    }
+    // function handleEmailChange(event) {
+    //     const {value}=event.target;
+    //     setEmailValue(value);
+    // }
 
     function handleOnChange(event) {
         const {name,value}=event.target
+        setFormData({
+            ...formData,
+            [name]:value
+        })
+            
     }
+    console.log(formData);
+    
 
     return<>
     <h1>Forms</h1>
     <form onSubmit={handleSubmit}>
     <input type="name"
-    value={nameValue} 
+    value={formData.name} 
     name="name"
     id="name" 
     placeholder="Enter your Name"
     onChange={handleOnChange}
     />
     <input type="email"
-    value={emailValue} 
+    value={formData.email} 
     name="email"
     id="email" 
     placeholder="Enter your Email"
